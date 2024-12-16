@@ -49,56 +49,43 @@ export default function RegisterForm() {
       <Card className="w-full max-w-xl shadow-lg rounded-[32px]">
         <CardHeader>
           <CardTitle className="text-center text-2xl font-bold">
-            إنشاء حساب جديد
+            تسجيل الدخول
           </CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            {/* Name Field */}
-            <div>
-              <Label htmlFor="name" className="">
-                الاسم
-              </Label>
-              <div className="relative mt-3">
-                <Input
-                  id="name"
-                  placeholder="أحمد"
-                  className="pr-10 text-right "
-                  {...register("name")}
-                />
-                <User className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-500" />
-              </div>
-              {errors.name && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.name.message}
-                </p>
-              )}
-            </div>
-
-            {/* Phone Field */}
-            <div>
-              <Label htmlFor="phone" className="">
-                رقم الهاتف
-              </Label>
-              <div className="relative flex gap-3 mt-3">
-                <SelectFlagInput />
-                <Input
-                  id="phone"
-                  placeholder="123456789"
-                  className="rounded-r-md text-right"
-                  {...register("phone")}
-                />
-              </div>
-              {errors.phone && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.phone.message}
-                </p>
-              )}
-            </div>
-
             {/* Password Field */}
             <div>
-              <Label htmlFor="password">كلمة المرور</Label>
+              <Label htmlFor="password" className="font-bold">
+                كلمة المرور
+              </Label>
+              <div className="relative mt-3">
+                <span
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute top-1/2 left-3 transform -translate-y-1/2 cursor-pointer text-gray-500"
+                >
+                  {showPassword ? <EyeOff /> : <Eye />}
+                </span>
+                <Input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="••••••••"
+                  className="pr-10 text-right mt-3"
+                  {...register("password")}
+                />
+              </div>
+              {errors.password && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.password.message}
+                </p>
+              )}
+            </div>
+            {/* Password Field */}
+            <div>
+              <Label htmlFor="password" className="font-bold">
+                {" "}
+                تأكيد كلمه المرور
+              </Label>
               <div className="relative mt-3">
                 <span
                   onClick={() => setShowPassword(!showPassword)}
@@ -121,47 +108,14 @@ export default function RegisterForm() {
               )}
             </div>
 
-            {/* Confirm Password Field */}
-            <div>
-              <Label htmlFor="confirmPassword">تأكيد كلمة المرور</Label>
-              <div className="relative mt-3">
-                <span
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute top-1/2 left-3 transform -translate-y-1/2 cursor-pointer text-gray-500"
-                >
-                  {showConfirmPassword ? <EyeOff /> : <Eye />}
-                </span>
-                <Input
-                  id="confirmPassword"
-                  type={showConfirmPassword ? "text" : "password"}
-                  placeholder="••••••••"
-                  className="pr-10 text-right"
-                  {...register("confirmPassword")}
-                />
-              </div>
-              {errors.confirmPassword && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.confirmPassword.message}
-                </p>
-              )}
-            </div>
-
             {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white h-[55px]"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white h-[55px] rounded-[100px] text-xl !mt-8 font-bold"
             >
-              إنشاء حساب جديد
+              تأكيد
             </Button>
           </form>
-
-          {/* Login Link */}
-          <p className="mt-4 text-sm text-center">
-            لديك حساب بالفعل؟{" "}
-            <Link href="/login" className="text-blue-600 hover:underline">
-              تسجيل دخول
-            </Link>
-          </p>
         </CardContent>
       </Card>
     </div>

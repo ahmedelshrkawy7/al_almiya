@@ -1,37 +1,56 @@
 import Image from "next/image";
-import React from "react";
 import assets from "./imports";
-import Button from "./uicomp/Button";
 
 const OurServices = () => {
   return (
-    <div className="h-screen bg-white flex justify-center items-center  md:p-24 text-black">
+    <div className="container mx-auto py-[120px] text-black">
       <div
-        className="flex items-center justify-between px-24  md:w-[80%]  bg-no-repeat bg-cover  rounded-3xl py-5 gap-20 h-[420px]"
+        className="flex flex-col lg:flex-row items-center justify-between p-12 md:px-24 relative bg-no-repeat bg-cover rounded-3xl py-5 gap-20 lg:h-[420px]"
         style={{ backgroundImage: "url('/images/bg-services.png')" }}
       >
+        {/* Header Section */}
         <div className="flex flex-col gap-5 justify-around">
-          <div className="bg-white rounded-3xl w-24 text-[var(--textColor)] text-center align-middle p-5">
+          <div className="bg-white rounded-3xl w-24 text-[var(--textColor)] text-center p-5">
             خدماتنا
           </div>
-          <h2 className="text-[40px] font-semibold">
+          <h2 className="text-[24px] md:text-[40px] font-semibold">
             إختر الخدمة اللتي تناسب طلبك و دع <br />
             الامر لخبرائنا
           </h2>
-
           <p>
             إختر الخدمة و اخبرنا عن مشكلتك و سوف نرسل لك الفني المناسب في اسرع
             وقت
           </p>
         </div>
-        <div className="flex flex-col gap-4">
-          <div className="bg-white p-10 rounded-[30px] flex flex-col justify-between items-center gap-3">
-            <Image src={assets.absorbent} alt="" />
-            <p>فني كشف تسريبات</p>
+
+        {/* Images Section */}
+        <div className="flex gap-10 lg:block lg:absolute left-0">
+          {/* Item 1 */}
+          <div className="p-5 lg:p-10 text-center">
+            <Image
+              width={220}
+              height={250}
+              src={assets.seperator}
+              alt="فني كشف تسريبات"
+              className="bg-white p-5 rounded-xl"
+            />
+            <p className="text-[var(--textColor)] font-semibold">
+              فني كشف تسريبات
+            </p>
           </div>
-          <div className="bg-white p-10 rounded-[30px] flex flex-col justify-between items-center gap-3">
-            <Image src={assets.seperator} alt="" />
-            <p>فني كشف عوازل</p>
+
+          {/* Item 2 */}
+          <div className="p-5 md:p-10 text-center">
+            <Image
+              width={220}
+              height={250}
+              src={assets.absorbent}
+              alt="فني كشف عوازل"
+              className="bg-white p-5 rounded-xl"
+            />
+            <p className="text-[var(--textColor)] font-semibold">
+              فني كشف عوازل
+            </p>
           </div>
         </div>
       </div>

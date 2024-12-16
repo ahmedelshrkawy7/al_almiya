@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
 import Footer from "@/components/Footer";
+import Nav from "@/components/Nav";
+import type { Metadata } from "next";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -23,6 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <>
+      {<Nav />}
       {children}
       {<Footer />}
     </>

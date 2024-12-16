@@ -46,17 +46,17 @@ export default function RegisterForm() {
 
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
-      <Card className="w-full max-w-xl shadow-lg rounded-[32px]">
+      <Card className="w-full max-w-xl shadow-lg rounded-[32px] p-12">
         <CardHeader>
           <CardTitle className="text-center text-2xl font-bold">
-            تسجيل الدخول
+            هل نسيت كلمة المرور؟
           </CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             {/* Phone Field */}
             <div>
-              <Label htmlFor="phone" className="font-bold">
+              <Label htmlFor="phone" className="">
                 رقم الهاتف
               </Label>
               <div className="relative flex gap-3 mt-3">
@@ -75,51 +75,13 @@ export default function RegisterForm() {
               )}
             </div>
 
-            {/* Password Field */}
-            <div>
-              <Label htmlFor="password" className="font-bold">
-                كلمة المرور
-              </Label>
-              <div className="relative mt-3">
-                <span
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute top-1/2 left-3 transform -translate-y-1/2 cursor-pointer text-gray-500"
-                >
-                  {showPassword ? <EyeOff /> : <Eye />}
-                </span>
-                <Input
-                  id="password"
-                  type={showPassword ? "text" : "password"}
-                  placeholder="••••••••"
-                  className="pr-10 text-right mt-3"
-                  {...register("password")}
-                />
-              </div>
-              {errors.password && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.password.message}
-                </p>
-              )}
-            </div>
-
-            <span className="!my-8 text-blue-600 ">نسيت كلمه المرور ؟</span>
-
-            {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white h-[55px] rounded-[100px] font-bold text-xl"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white h-[55px] rounded-[100px]"
             >
-              تسجيل الدخول
+              إرسال
             </Button>
           </form>
-
-          {/* Login Link */}
-          <p className="mt-4 text-sm text-center">
-            ليس لديك حساب ؟
-            <Link href="/register" className="text-blue-600 hover:underline">
-              انشاء حساب جديد
-            </Link>
-          </p>
         </CardContent>
       </Card>
     </div>
