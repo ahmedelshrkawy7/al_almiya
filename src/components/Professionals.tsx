@@ -31,7 +31,7 @@ const Professionals = () => {
       <div className="mt-20 grid grid-cols-1 md:grid-cols-3">
         {data.map((el) => {
           return (
-            <div className="flex flex-col items-center ">
+            <div className="flex flex-col items-center " key={el.name}>
               <Image src={el.image} alt="professional 1" />
               <div className="flex flex-col items-center gap-1 mt-6">
                 <h3> {el.job}</h3>
