@@ -4,7 +4,7 @@ import assets from "./imports";
 
 const Application = () => {
   return (
-    <div className="flex h-screen items-center justify-between md:px-40">
+    <div className="grid grid-cols-1 md:grid-cols-2 min-h-screen items-center justify-center justify-items-center md:px-40">
       <div className="flex flex-col gap-20">
         <h2 className="text-[60px] leading-[80px] font-medium">
           مهمتنا هي توفير خدمات منزلك <br />

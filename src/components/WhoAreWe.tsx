@@ -29,7 +29,7 @@ const WhoAreWe = () => {
   ];
   return (
     <div className="md:px-40">
-      <div className="bg-white flex items-center justify-around gap-20  mt-20">
+      <div className="bg-white grid grid-cols-1 lg:grid-cols-2 justify-around justify-items-center gap-20  mt-20">
         <div className="flex flex-col gap-3 h-full items-start ">
           <span className="bg-[#F7F7FC] rounded-[50px] p-5 text-center text-[var(--textColor)]">
             من نحن
@@ -38,7 +38,7 @@ const WhoAreWe = () => {
             أفضل الفنيين الخبراء لخدمتك
           </h2>
 
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
             {data.map((el) => {
               return <DsComp key={el.h} {...el} />;
             })}

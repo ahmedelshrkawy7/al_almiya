@@ -6,8 +6,8 @@ import Button from "./uicomp/Button";
 
 const Leaking = () => {
   return (
-    <div className="h-screen flex items-center md:px-60">
-      <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-center md:gap-40 gap-20 w-full ">
+    <div className="min-h-screen flex items-center md:px-60">
+      <div className="grid grid-cols-1 lg:grid-cols-2 justify-center items-center md:gap-40 gap-20 w-full ">
         <div>
           <Image src={assets.leaking} alt="repair leaking" />
         </div>

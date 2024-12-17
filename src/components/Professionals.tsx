@@ -23,7 +23,7 @@ const Professionals = () => {
     },
   ];
   return (
-    <div className="md:px-40 h-screen">
+    <div className="md:px-40 min-h-screen">
       <div className="flex items-center justify-between">
         <Label head="خبرائنا" text="افضل خبراء لدينا" />
         <Button text="تواصل معنا" />
