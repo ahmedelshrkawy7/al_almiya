@@ -13,18 +13,24 @@ import { useMyContext } from "@/context/DataContext";
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { toggleLanguage } = useMyContext();
-  console.log("🚀 ~ Nav ~ setLanguage:", toggleLanguage);
+  const { language, setLanguage } = useMyContext();
+  console.log("🚀 ~ Nav ~ language:", language);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const handleLang = () => {
     const lang = localStorage.getItem("lang");
-    toggleLanguage(lang);
+    if (lang === "ar") {
+      localStorage.setItem("lang", "en");
+      setLanguage("en");
+    } else {
+      localStorage.setItem("lang", "ar");
+      setLanguage("ar");
+    }
   };
 
   return (
-    <nav className=" shadow-md bg-Bgblue">
+    <nav className="shadow-md bg-Bgblue">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/">
@@ -51,7 +57,7 @@ const Nav = () => {
         <div className="hidden md:flex items-center gap-6">
           <Button
             variant="outline"
-            className="p-3 border border-gray-200 rounded-lg  text-white"
+            className="p-3 border border-gray-200 rounded-lg text-white"
           >
             <FaRegBell size={22} />
           </Button>
@@ -65,7 +71,7 @@ const Nav = () => {
             className="flex items-center gap-2 text-white"
             onClick={handleLang}
           >
-            <span>EN</span>
+            <span>{language}</span>
             <GrLanguage size={22} />
           </div>
         </div>
@@ -75,7 +81,7 @@ const Nav = () => {
           <Button
             variant="ghost"
             onClick={toggleMenu}
-            className="focus:outline-none"
+            className="focus:outline-none text-white"
           >
             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </Button>
@@ -84,7 +90,7 @@ const Nav = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-200">
+        <div className="md:hidden border-t border-gray-200 bg-Bgblue text-white">
           <div className="flex flex-col items-center gap-4 py-4">
             <Link
               href="/"
@@ -128,7 +134,6 @@ const Nav = () => {
                 <CiUser size={22} />
               </Button>
               <div className="flex items-center gap-2">
-                {/* <span>{lang}</span> */}
                 <GrLanguage size={22} />
               </div>
             </div>

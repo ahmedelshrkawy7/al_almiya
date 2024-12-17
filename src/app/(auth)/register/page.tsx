@@ -22,10 +22,6 @@ const schema = yup.object().shape({
     .string()
     .min(6, "كلمة المرور يجب أن تحتوي على 6 أحرف على الأقل")
     .required("كلمة المرور مطلوبة"),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref("password")], "كلمة المرور غير متطابقة")
-    .required("تأكيد كلمة المرور مطلوب"),
 });
 
 export default function RegisterForm() {
@@ -45,10 +41,10 @@ export default function RegisterForm() {
 
   const onSubmit = (data: any) => {
     axiosInstance
-      .post("login", data)
+      .post("register", data)
       .then((res) => {
         toast.success("تم تسجيل الدخول بنجاح");
-        router.push("/website"); // Navigate to /website
+        router.push("/login"); // Navigate to /website
       })
       .catch((error) => {
         console.error("Login Error:", error);

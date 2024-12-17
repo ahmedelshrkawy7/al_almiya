@@ -3,31 +3,21 @@
 import axiosInstance from "@/lib/api/axiosInstance";
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-// Define the shape of the context
-
-// Create the context with a default value
+// Create the context with a default value of undefined
 const MyContext = createContext(undefined);
 
 // Create a provider component
-
 export const MyContextProvider = ({ children }) => {
-  const [data, setData] = useState([]); // Replace `any` with the actual data type if known
+  const [data, setData] = useState([]); // Replace with the actual data type if known
   const [language, setLanguage] = useState("en");
-
-  function toggleLanguage(lang) {
-    if (lang == "ar") {
-      localStorage.setItem("lang", "en");
-      setLanguage("en");
-    } else {
-      localStorage.setItem("lang", "ar");
-    }
-  }
 
   // Fetch data from the endpoint and set it in the context
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axiosInstance.get("home"); // Replace with your actual endpoint
+        const response = await axiosInstance.get("home", {
+          headers: { "Accept-Language": language },
+        }); // Replace with your actual endpoint
         const data = response.data.data;
         console.log("🚀 ~ fetchUserData ~ data:", data);
         setData(data);
@@ -37,17 +27,11 @@ export const MyContextProvider = ({ children }) => {
     };
 
     fetchUserData();
-  }, []);
+  }, [language]);
 
   // Provide the context value to children
   return (
-    <MyContext.Provider
-      value={{
-        data,
-        toggleLanguage,
-        language,
-      }}
-    >
+    <MyContext.Provider value={{ data, setLanguage, language }}>
       {children}
     </MyContext.Provider>
   );

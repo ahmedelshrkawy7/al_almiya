@@ -63,10 +63,6 @@ const axiosInstance = axios.create({
     process.env.NEXT_PUBLIC_API_BASE_URL ||
     "https://phpv8.aait-d.com/leak_detection/public/api/website/",
   timeout: 10000,
-  headers: {
-    "Content-Type": "application/json",
-    "Accept-Language": localStorage.getItem("lang") || "en",
-  },
 });
 
 // Attach interceptors

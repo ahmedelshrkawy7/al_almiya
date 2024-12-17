@@ -14,6 +14,7 @@ import Link from "next/link";
 import axiosInstance from "@/lib/api/axiosInstance";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 const schema = yup.object().shape({
   phone: yup.string().required("رقم الهاتف مطلوب"),
@@ -44,10 +45,14 @@ export default function RegisterForm() {
       .then((res) => {
         toast.success("تم تسجيل الدخول بنجاح");
         router.push("/website"); // Navigate to /website
+        Cookies.set("auth_flag", "true", {
+          expires: 7,
+          secure: true,
+          sameSite: "Strict",
+        });
       })
       .catch((error) => {
-        console.error("Login Error:", error);
-        toast.error("حدث خطأ أثناء تسجيل الدخول");
+        toast.error("حدث خطأ أثناء تسجيل الدخول!");
       });
   };
 

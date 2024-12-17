@@ -9,12 +9,12 @@ export default function SelectFlagInput({ control }) {
     console.log("🚀 ~ onSelect ~ code:", code);
   };
   const countryCallingCodes = {
-    SA: "+966",
-    GB: "+44",
-    IE: "+353",
-    IT: "+39",
-    NL: "+31",
-    SE: "+46",
+    SA: "966",
+    GB: "44",
+    IE: "353",
+    IT: "39",
+    NL: "31",
+    SE: "46",
   };
 
   return (
