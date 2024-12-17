@@ -14,6 +14,15 @@ export const MyContextProvider = ({ children }) => {
   const [data, setData] = useState([]); // Replace `any` with the actual data type if known
   const [language, setLanguage] = useState("en");
 
+  function toggleLanguage(lang) {
+    if (lang == "ar") {
+      localStorage.setItem("lang", "en");
+      setLanguage("en");
+    } else {
+      localStorage.setItem("lang", "ar");
+    }
+  }
+
   // Fetch data from the endpoint and set it in the context
   useEffect(() => {
     const fetchUserData = async () => {
@@ -35,7 +44,7 @@ export const MyContextProvider = ({ children }) => {
     <MyContext.Provider
       value={{
         data,
-        setLanguage: React.Dispatch < React.SetStateAction,
+        toggleLanguage,
         language,
       }}
     >

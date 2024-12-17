@@ -11,21 +11,13 @@ import { Label } from "@/components/ui/label";
 import { Eye, EyeOff, User } from "lucide-react";
 import SelectFlagInput from "@/components/uicomp/SelectFlagInput";
 import Link from "next/link";
+import axiosInstance from "@/lib/api/axiosInstance";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const schema = yup.object().shape({
   name: yup.string().required("الاسم مطلوب"),
-  phone: yup
-    .string()
-    .matches(/^\d{9}$/, "رقم الهاتف يجب أن يحتوي على 9 أرقام")
-    .required("رقم الهاتف مطلوب"),
-  password: yup
-    .string()
-    .min(6, "كلمة المرور يجب أن تحتوي على 6 أحرف على الأقل")
-    .required("كلمة المرور مطلوبة"),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref("password")], "كلمة المرور غير متطابقة")
-    .required("تأكيد كلمة المرور مطلوب"),
+  phone: yup.string().required("رقم الهاتف مطلوب"),
 });
 
 export default function RegisterForm() {
@@ -35,13 +27,26 @@ export default function RegisterForm() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   });
 
+  const router = useRouter();
+
   const onSubmit = (data: any) => {
-    console.log(data);
+    axiosInstance
+      .post("login", data)
+      .then((res) => {
+        toast.success("تم تسجيل الدخول بنجاح");
+        router.push("/website"); // Navigate to /website
+        localStorage.setItem("phone", data.phone);
+      })
+      .catch((error) => {
+        console.error("Login Error:", error);
+        toast.error("حدث خطأ أثناء تسجيل الدخول");
+      });
   };
 
   return (
@@ -60,7 +65,7 @@ export default function RegisterForm() {
                 رقم الهاتف
               </Label>
               <div className="relative flex gap-3 mt-3">
-                <SelectFlagInput />
+                <SelectFlagInput control={control} />
                 <Input
                   id="phone"
                   placeholder="123456789"

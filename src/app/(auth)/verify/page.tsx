@@ -15,6 +15,9 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import Link from "next/link";
+import axiosInstance from "@/lib/api/axiosInstance";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const schema = yup.object({
   otp: yup
@@ -34,13 +37,21 @@ export default function OTPVerificationForm() {
     defaultValues: { otp: "" },
   });
 
+  const router = useRouter();
+
   const onSubmit = (data: any) => {
+    console.log("🚀 ~ onSubmit ~ data:", data);
     setLoading(true);
-    console.log("Submitted OTP:", data.otp);
-    setTimeout(() => {
-      setLoading(false);
-      alert("تم تأكيد الكود بنجاح!");
-    }, 1000);
+    axiosInstance
+      .post("login", data)
+      .then((res) => {
+        toast.success("تم تسجيل الدخول بنجاح");
+        router.push("/website"); // Navigate to /website
+      })
+      .catch((error) => {
+        console.error("Login Error:", error);
+        toast.error("حدث خطأ أثناء تسجيل الدخول");
+      });
   };
 
   return (

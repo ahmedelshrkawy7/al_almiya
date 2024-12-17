@@ -11,13 +11,13 @@ import { Label } from "@/components/ui/label";
 import { Eye, EyeOff, User } from "lucide-react";
 import SelectFlagInput from "@/components/uicomp/SelectFlagInput";
 import Link from "next/link";
+import axiosInstance from "@/lib/api/axiosInstance";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const schema = yup.object().shape({
-  name: yup.string().required("الاسم مطلوب"),
-  phone: yup
-    .string()
-    .matches(/^\d{9}$/, "رقم الهاتف يجب أن يحتوي على 9 أرقام")
-    .required("رقم الهاتف مطلوب"),
+  full_name: yup.string().required("الاسم مطلوب"),
+  phone: yup.string().required("رقم الهاتف مطلوب"),
   password: yup
     .string()
     .min(6, "كلمة المرور يجب أن تحتوي على 6 أحرف على الأقل")
@@ -35,13 +35,25 @@ export default function RegisterForm() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   });
 
+  const router = useRouter();
+
   const onSubmit = (data: any) => {
-    console.log(data);
+    axiosInstance
+      .post("login", data)
+      .then((res) => {
+        toast.success("تم تسجيل الدخول بنجاح");
+        router.push("/website"); // Navigate to /website
+      })
+      .catch((error) => {
+        console.error("Login Error:", error);
+        toast.error("حدث خطأ أثناء تسجيل الدخول");
+      });
   };
 
   return (
@@ -64,13 +76,13 @@ export default function RegisterForm() {
                   id="name"
                   placeholder="أحمد"
                   className="pr-10 text-right "
-                  {...register("name")}
+                  {...register("full_name")}
                 />
                 <User className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-500" />
               </div>
-              {errors.name && (
+              {errors.full_name && (
                 <p className="text-red-500 text-sm mt-1">
-                  {errors.name.message}
+                  {errors.full_name.message}
                 </p>
               )}
             </div>
@@ -81,7 +93,7 @@ export default function RegisterForm() {
                 رقم الهاتف
               </Label>
               <div className="relative flex gap-3 mt-3">
-                <SelectFlagInput />
+                <SelectFlagInput control={control} />
                 <Input
                   id="phone"
                   placeholder="123456789"
@@ -136,7 +148,6 @@ export default function RegisterForm() {
                   type={showConfirmPassword ? "text" : "password"}
                   placeholder="••••••••"
                   className="pr-10 text-right"
-                  {...register("confirmPassword")}
                 />
               </div>
               {errors.confirmPassword && (

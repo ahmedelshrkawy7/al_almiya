@@ -13,19 +13,14 @@ import { useMyContext } from "@/context/DataContext";
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { setLanguage } = useMyContext();
-  console.log("🚀 ~ Nav ~ setLang:", setLanguage);
+  const { toggleLanguage } = useMyContext();
+  console.log("🚀 ~ Nav ~ setLanguage:", toggleLanguage);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const handleLang = () => {
     const lang = localStorage.getItem("lang");
-    if (lang == "ar") {
-      localStorage.setItem("lang", "en");
-       setLanguage("en");
-    } else {
-      localStorage.setItem("lang", "ar");
-    }
+    toggleLanguage(lang);
   };
 
   return (

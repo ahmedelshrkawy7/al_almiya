@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import ReactFlagsSelect from "react-flags-select";
+import { Controller } from "react-hook-form";
 
-export default function SelectFlagInput() {
+export default function SelectFlagInput({ control }) {
   const [selected, setSelected] = useState("SA"); // Default selected country (Saudi Arabia)
   console.log("🚀 ~ SelectFlagInput ~ selected:", selected);
   const onSelect = (code) => {
@@ -18,8 +19,30 @@ export default function SelectFlagInput() {
 
   return (
     <div className="App">
-      
-      <ReactFlagsSelect
+      <Controller
+        name="phone_code"
+        control={control}
+        defaultValue={countryCallingCodes[selected]}
+        render={({ field: { onChange, value } }) => (
+          <ReactFlagsSelect
+            selected={selected}
+            onSelect={(code) => {
+              setSelected(code); // Update local state
+              onChange(countryCallingCodes[code]); // Update react-hook-form value
+            }}
+            countries={["SA", "GB", "IE", "IT", "NL", "SE"]}
+            showSelectedLabel={false}
+            showOptionLabel={false}
+            placeholder="Select a country"
+            className="h-[40px]"
+            style={{
+              height: "60px",
+            }}
+          />
+        )}
+      />
+
+      {/* <ReactFlagsSelect
         className="h-[40px]"
         selected={selected}
         onSelect={onSelect}
@@ -30,7 +53,7 @@ export default function SelectFlagInput() {
         style={{
           height: "60px", // Adjust the height as needed
         }}
-      />
+      /> */}
 
       <br />
 
