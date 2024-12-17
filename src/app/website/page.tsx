@@ -10,23 +10,26 @@ import Testimonials from "@/components/Testimonials";
 import WhoAreWe from "@/components/WhoAreWe";
 import { useMyContext } from "@/context/DataContext";
 
+// /src/pages/website_home.tsx
+
 const Website_home = () => {
   const { data } = useMyContext();
   console.log("🚀 ~ data:", data);
 
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
-      <div>
-        <Header />
-        <OurServices />
-        <WhoAreWe />
-        <Leaking />
-        <Professionals />
-        <Testimonials />
-
-        <Advantages />
-        <Application />
-      </div>
+      <Header data={data.home_slider} />
+      <OurServices data={data.services} />
+      <WhoAreWe data={data.home_about} services={data.services} />
+      <Leaking data={data.home_services} />
+      <Professionals data={data.home_experts} />
+      <Testimonials data={data.testimonials} />
+      <Advantages data={data.what_we_offers} />
+      <Application data={data.home_slider} />
     </>
   );
 };

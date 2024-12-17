@@ -2,7 +2,14 @@ import React from "react";
 import assets from "./imports";
 import DsComp from "./DsComp";
 
-const Advantages = () => {
+const Advantages = ({ data: ourServices }) => {
+  console.log("🚀 ~ Advantages ~ ourServices:", ourServices);
+  //  {
+  //               "id": 2,
+  //               "title": "مهارة وخبرة فريق العمل",
+  //               "desc": "<p>يتمتع فريقنا بسنوات من الخبرة في المجال لضمان تقديم خدمات عالية الجودة.</p>",
+  //               "image": "https://phpv8.aait-d.com/leak_detection/public/storage/images/what_we_offers/VgSUTjHh9I7KwSg2vwkmvtsPXFmTi5mx6PZagMJg.png"
+  //           },
   const data = [
     {
       icon: assets.icon1,
@@ -32,12 +39,32 @@ const Advantages = () => {
     >
       <div className="flex w-full h-full justify-between items-center ">
         <div className="flex flex-col gap-[200px] w-[462px] self-start">
-          <DsComp key={data[0].h} {...data[0]} />
-          <DsComp key={data[1].h} {...data[1]} />
+          <DsComp
+            key={data[0].id}
+            image={data[0].image}
+            desc={data[0].desc}
+            title={data[0].title}
+          />
+          <DsComp
+            key={data[1].id}
+            image={data[1].image}
+            desc={data[1].desc}
+            title={data[1].title}
+          />
         </div>
         <div className="flex flex-col gap-[200px] w-[462px] self-end ">
-          <DsComp key={data[2].h} {...data[2]} />
-          <DsComp key={data[3].h} {...data[3]} />
+          <DsComp
+            key={data[2].id}
+            image={data[2].image}
+            desc={data[2].desc}
+            title={data[2].title}
+          />
+          <DsComp
+            key={data[3].id}
+            image={data[3].image}
+            desc={data[3].desc}
+            title={data[3].title}
+          />
         </div>
       </div>
     </div>

@@ -1,7 +1,8 @@
 import Image from "next/image";
 import assets from "./imports";
 
-const OurServices = () => {
+const OurServices = ({ data }) => {
+  console.log("🚀 ~ OurServices ~ data:", data);
   return (
     <div className="container mx-auto py-[120px] text-black">
       <div
@@ -25,22 +26,27 @@ const OurServices = () => {
 
         {/* Images Section */}
         <div className="flex gap-10 lg:block lg:absolute left-0">
+          {data?.slice(0, 2).map((service) => (
+            <div
+              key={service.id}
+              className="p-5 md:p-10 text-center flex flex-col items-center"
+            >
+              <Image
+                width={220}
+                height={250}
+                src={service.main_image.media}
+                alt={service.title}
+                className="bg-white p-5 rounded-xl"
+              />
+              <p className="text-[var(--textColor)] font-semibold">
+                {service.title}
+              </p>
+            </div>
+          ))}
           {/* Item 1 */}
-          <div className="p-5 lg:p-10 text-center">
-            <Image
-              width={220}
-              height={250}
-              src={assets.seperator}
-              alt="فني كشف تسريبات"
-              className="bg-white p-5 rounded-xl"
-            />
-            <p className="text-[var(--textColor)] font-semibold">
-              فني كشف تسريبات
-            </p>
-          </div>
 
           {/* Item 2 */}
-          <div className="p-5 md:p-10 text-center">
+          {/* <div className="p-5 md:p-10 text-center">
             <Image
               width={220}
               height={250}
@@ -51,7 +57,7 @@ const OurServices = () => {
             <p className="text-[var(--textColor)] font-semibold">
               فني كشف عوازل
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -1,14 +1,15 @@
 import Image from "next/image";
 import assets from "./imports";
 
-const Header = () => {
+const Header = ({ data }) => {
+  console.log("🚀 ~ Header ~ data:", data);
   return (
     <div className="h-screen flex flex-col bg-[var(--background-blue)] text-white">
       {/* <Nav /> */}
       <div
-        className="flex flex-col md:mt-5  bg-no-repeat bg-center h-full md:px-12 mt-20 md:m-0 "
+        className="flex flex-col md:mt-5 bg-no-repeat bg-center h-full md:px-12 mt-20 md:m-0"
         style={{
-          backgroundImage: "url('/images/hero.png')",
+          backgroundImage: `url('${data?.big_image || assets.hero}')`,
           backgroundSize: "contain",
         }}
       >
@@ -25,7 +26,12 @@ const Header = () => {
           </div>
         </div>
         <div className="flex justify-center md:justify-start items-center h-full  ">
-          <Image src={assets.worker} alt="" />
+          <Image
+            src={data?.image || assets.worker}
+            alt="Description of the image"
+            width={250}
+            height={150}
+          />{" "}
         </div>
       </div>
     </div>

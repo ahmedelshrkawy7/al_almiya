@@ -1,6 +1,6 @@
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
-import { MyContextProvider, useMyContext } from "@/context/DataContext";
+import { MyContextProvider } from "@/context/DataContext";
 import type { Metadata } from "next";
 
 // const geistSans = Geist({
@@ -29,7 +29,7 @@ export default function RootLayout({
         <Nav />
         {children}
       </MyContextProvider>
-      {/* {<Footer />} */}
+      {<Footer />}
     </>
   );
 }

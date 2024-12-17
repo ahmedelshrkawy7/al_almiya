@@ -4,7 +4,7 @@ import assets from "./imports";
 import Label from "./uicomp/Label";
 import Button from "./uicomp/Button";
 
-const Leaking = () => {
+const Leaking = ({ data }) => {
   return (
     <div className="min-h-screen flex items-center md:px-60">
       <div className="grid grid-cols-1 lg:grid-cols-2 justify-center items-center md:gap-40 gap-20 w-full ">

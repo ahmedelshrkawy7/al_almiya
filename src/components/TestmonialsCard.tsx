@@ -2,21 +2,17 @@ import Image from "next/image";
 import React from "react";
 import assets from "./imports";
 
-const TestmonialsCard = () => {
+const TestmonialsCard = ({ name, job, desc, image }) => {
   return (
     <div className=" bg-[#F7F7FC] p-10 rounded-3xl flex flex-col justify-between gap-4">
-      <Image src={assets.qoute} alt="qoute" width={30} />
-      <p>
-        "لقد استدعيت فريق تسريب المياه الخاص بكم لإصلاح تسريب في منزلي، وأنا
-        سعيد جدًا بالخدمة التي تلقيتها. كان الفريق محترفًا وودودًا، وأصلحوا
-        المشكلة بسرعة وبأعلى جودة. أوصي بشدة بخدماتكم."
-      </p>
+      <Image src={assets.qoute} alt="qoute" width={30} height={30} />
+      <p>{desc}</p>
 
       <div className=" flex gap-5">
-        <Image src={assets.woman} alt="" />
+        <Image src={image} alt="" width={52} height={52} />
         <div className="flex flex-col gap-2">
-          <h3>نرمين علي</h3>
-          <p>مؤسس شركة CAS</p>
+          <h3> {name}</h3>
+          <p> {job} </p>
         </div>
       </div>
     </div>

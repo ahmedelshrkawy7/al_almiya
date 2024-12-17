@@ -4,7 +4,7 @@ import assets from "./imports";
 import DsComp from "./DsComp";
 import Button from "./uicomp/Button";
 
-const WhoAreWe = () => {
+const WhoAreWe = ({ data: _data, services }) => {
   const data = [
     {
       icon: assets.icon1,
@@ -35,7 +35,7 @@ const WhoAreWe = () => {
             من نحن
           </span>
           <h2 className="text-[40px] font-semibold text-black">
-            أفضل الفنيين الخبراء لخدمتك
+            {_data?.title}{" "}
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
@@ -45,7 +45,7 @@ const WhoAreWe = () => {
           </div>
         </div>
         <div>
-          <Image src={assets.whoarewe} alt="whoarewe" />
+          <Image src={data?.video || assets.whoarewe} alt="whoarewe" />
         </div>
       </div>
       <Button text="اعرف المزيد" />

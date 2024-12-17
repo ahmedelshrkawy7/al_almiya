@@ -9,14 +9,27 @@ import { GrLanguage } from "react-icons/gr";
 import { Menu, X } from "lucide-react"; // Icons for menu toggle
 import assets from "@/components/imports";
 import { Button } from "@/components/ui/button";
+import { useMyContext } from "@/context/DataContext";
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { setLanguage } = useMyContext();
+  console.log("🚀 ~ Nav ~ setLang:", setLanguage);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
+  const handleLang = () => {
+    const lang = localStorage.getItem("lang");
+    if (lang == "ar") {
+      localStorage.setItem("lang", "en");
+       setLanguage("en");
+    } else {
+      localStorage.setItem("lang", "ar");
+    }
+  };
+
   return (
-    <nav className="bg-white shadow-md">
+    <nav className=" shadow-md bg-Bgblue">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/">
@@ -25,16 +38,16 @@ const Nav = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-6">
-          <Link href="/" className="hover:text-blue-500">
+          <Link href="/" className="text-white">
             الرئيسية
           </Link>
-          <Link href="/services" className="hover:text-blue-500">
+          <Link href="/services" className="text-white">
             خدمات
           </Link>
-          <Link href="/about" className="hover:text-blue-500">
+          <Link href="/about" className="text-white">
             من نحن
           </Link>
-          <Link href="/contact" className="hover:text-blue-500">
+          <Link href="/contact" className="text-white">
             تواصل معانا
           </Link>
         </div>
@@ -43,17 +56,20 @@ const Nav = () => {
         <div className="hidden md:flex items-center gap-6">
           <Button
             variant="outline"
-            className="p-3 border border-gray-200 rounded-lg"
+            className="p-3 border border-gray-200 rounded-lg  text-white"
           >
             <FaRegBell size={22} />
           </Button>
           <Button
             variant="outline"
-            className="p-3 border border-gray-200 rounded-lg"
+            className="p-3 border border-gray-200 rounded-lg text-white"
           >
             <CiUser size={22} />
           </Button>
-          <div className="flex items-center gap-2">
+          <div
+            className="flex items-center gap-2 text-white"
+            onClick={handleLang}
+          >
             <span>EN</span>
             <GrLanguage size={22} />
           </div>
@@ -117,7 +133,7 @@ const Nav = () => {
                 <CiUser size={22} />
               </Button>
               <div className="flex items-center gap-2">
-                <span>EN</span>
+                {/* <span>{lang}</span> */}
                 <GrLanguage size={22} />
               </div>
             </div>

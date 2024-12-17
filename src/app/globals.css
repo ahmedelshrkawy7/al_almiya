@@ -2,10 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --background-blue: #003773;
+  --background: #003773;
+  
+  --light-gray: #adb3da;
+
+  --lightBlue: #0a4088;
+  --textColor: #3162da;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background-blue: #003773;
     --light-gray: #adb3da;
+    --background: #003773;
 
     --lightBlue: #0a4088;
     --textColor: #3162da;

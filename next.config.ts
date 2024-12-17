@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    domains: ["phpv8.aait-d.com"],
+  },
 };
 
 export default nextConfig;
