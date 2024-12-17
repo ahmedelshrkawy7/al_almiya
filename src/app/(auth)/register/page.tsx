@@ -146,11 +146,6 @@ export default function RegisterForm() {
                   className="pr-10 text-right"
                 />
               </div>
-              {errors.confirmPassword && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.confirmPassword.message}
-                </p>
-              )}
             </div>
 
             {/* Submit Button */}
